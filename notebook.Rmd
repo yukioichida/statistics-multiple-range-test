@@ -1,0 +1,32 @@
+---
+title: "Duncan's new multiple range test"
+output:
+  html_document:
+    df_print: paged
+---
+
+### A primeira coisa a ser feita é carregar os dados em um DataFrame
+
+```{r}
+data = read.csv(file = "data.csv", row.names = 1)
+data$weight.loss = data$initial.weight - data$final.weight 
+data
+
+```
+
+### Antes de executarmos o MRT, precisamos executar ANOVA. Iremos guardar o resultado a ANOVA em um novo dataframe
+
+```{r}
+anova  = aov(weight.loss~diet.type,data=data)
+anova
+```
+
+### Execução do MRT
+```{r}
+library(DescTools)
+PostHocTest(anova, method = "duncan")
+#library(agricolae)
+#results <- duncan.test(anova,"Dieta",alpha=0.05,console=TRUE)
+#plot(results,horiz=TRUE,las=1)
+```
+
