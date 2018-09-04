@@ -180,14 +180,13 @@ $(document).ready(function () {
 <h3>A primeira coisa a ser feita é carregar os dados em um DataFrame</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSR3ZWlnaHQubG9zcyA9IGRhdGEkaW5pdGlhbC53ZWlnaHQgLSBkYXRhJGZpbmFsLndlaWdodCBcblxuYGBgIn0= -->
-<pre class="r"><code>data$weight.loss = data$initial.weight - data$final.weight 
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gYCQ8LS5kYXRhLmZyYW1lYChgKnRtcCpgLCB3ZWlnaHQubG9zcywgdmFsdWUgPSBpbnRlZ2VyKDApKSA6IFxuICByZXBsYWNlbWVudCBoYXMgMCByb3dzLCBkYXRhIGhhcyA3OFxuIn0= -->
-<pre><code>Error in `$&lt;-.data.frame`(`*tmp*`, weight.loss, value = integer(0)) : 
-  replacement has 0 rows, data has 78</code></pre>
-<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6N30sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVJ5VTdETUJBZE94dXh4Q0wxRjdnMkVxWEFEM0FIY2VyVkpLYU42dHFWNDdKOEJuL0xxVEJ4UEZYSXdjNmI1emR2bHJ3OHJoWmlKUUNBUTVJeDRBbkNsT1BGSUlXeS8zNENKRE1FL2NzNW5pS0loemdOUW9BTVR4N2Zva2E4QTVRL0FHZlBlSjZRUW0zK2pkTHJrUStiZUkxOC9qV1JHYmxUSFlLcklCN0kwanNsL1U0Wkg0bjBTK21Hc0pObU8zRXBuZjJveGs0RnpYaERZRUhnbHNDU3dCMkJld0lQMHk1ckxUdnlKbEkwMHN2cXpXRlpqSTZUbE1MdWZXc05KdkZabkgrY3pOeUV1RHlZZm9CbVhtOE9aanRmOWdYaUhsbmNLeHY5Qnpic3RpL0pmNk5WRnExeVpkYXRVZFM3bHE5S3grQUNGeFgyVk8xZGUxcXZRTGFydlBXU2RLSzJtcGd3R3h6L0FDaFlwTWxSQWdBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["treatment"],"name":[1],"type":["int"],"align":["right"]},{"label":["yeld"],"name":[2],"type":["int"],"align":["right"]},{"label":["rank"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"2","2":"2678","3":"1","_rn_":"1"},{"1":"3","2":"2552","3":"2","_rn_":"2"},{"1":"4","2":"2128","3":"3","_rn_":"3"},{"1":"1","2":"2127","3":"4","_rn_":"4"},{"1":"5","2":"1796","3":"5","_rn_":"5"},{"1":"6","2":"1681","3":"6","_rn_":"6"},{"1":"7","2":"1316","3":"7","_rn_":"7"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[7]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -195,6 +194,23 @@ $(document).ready(function () {
 <h3>Antes de executarmos o MRT, precisamos executar ANOVA. Iremos guardar o resultado a ANOVA em um novo dataframe</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYW5vdmEgID0gYW92KHllbGR+dHJlYXRtZW50LGRhdGE9ZGF0YSlcbmFub3ZhXG5cbmBgYCJ9 -->
+<pre class="r"><code>anova  = aov(yeld~treatment,data=data)
+anova
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiQ2FsbDpcbiAgIGFvdihmb3JtdWxhID0geWVsZCB+IHRyZWF0bWVudCwgZGF0YSA9IGRhdGEpXG5cblRlcm1zOlxuICAgICAgICAgICAgICAgIHRyZWF0bWVudCBSZXNpZHVhbHNcblN1bSBvZiBTcXVhcmVzICAgOTU5NDEwLjMgIDQzNzY4My4xXG5EZWcuIG9mIEZyZWVkb20gICAgICAgICAxICAgICAgICAgNVxuXG5SZXNpZHVhbCBzdGFuZGFyZCBlcnJvcjogMjk1Ljg2NTlcbkVzdGltYXRlZCBlZmZlY3RzIG1heSBiZSB1bmJhbGFuY2VkXG4ifQ== -->
+<pre><code>Call:
+   aov(formula = yeld ~ treatment, data = data)
+
+Terms:
+                treatment Residuals
+Sum of Squares   959410.3  437683.1
+Deg. of Freedom         1         5
+
+Residual standard error: 295.8659
+Estimated effects may be unbalanced</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -202,19 +218,19 @@ $(document).ready(function () {
 <h3>Execução do MRT</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShEZXNjVG9vbHMpXG5Qb3N0SG9jVGVzdChhbm92YSwgbWV0aG9kID0gXCJkdW5jYW5cIilcbiNsaWJyYXJ5KGFncmljb2xhZSlcbiNyZXN1bHRzIDwtIGR1bmNhbi50ZXN0KGFub3ZhLFwiRGlldGFcIixhbHBoYT0wLjA1LGNvbnNvbGU9VFJVRSlcbiNwbG90KHJlc3VsdHMsaG9yaXo9VFJVRSxsYXM9MSlcbmBgYCJ9 -->
-<pre class="r"><code>library(DescTools)
-PostHocTest(anova, method = &quot;duncan&quot;)
-#library(agricolae)
-#results &lt;- duncan.test(anova,&quot;Dieta&quot;,alpha=0.05,console=TRUE)
-#plot(results,horiz=TRUE,las=1)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZHVuY2FuLnRlc3QoYW5vdmEsXCJEaWV0YVwiLGFscGhhPTAuMDUpXG5cbmBgYCJ9 -->
+<pre class="r"><code>duncan.test(anova,&quot;Dieta&quot;,alpha=0.05)
+</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTlVMTFxuIn0= -->
+<pre><code>NULL</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkR1bmNhbidzIG5ldyBtdWx0aXBsZSByYW5nZSB0ZXN0Ig0Kb3V0cHV0Og0KICBodG1sX2RvY3VtZW50Og0KICAgIGRmX3ByaW50OiBwYWdlZA0KLS0tDQoNCiMjIyBBIHByaW1laXJhIGNvaXNhIGEgc2VyIGZlaXRhIMOpIGNhcnJlZ2FyIG9zIGRhZG9zIGVtIHVtIERhdGFGcmFtZQ0KDQpgYGB7cn0NCmRhdGEgPSByZWFkLmNzdihmaWxlID0gImRhdGEuY3N2Iiwgcm93Lm5hbWVzID0gMSkNCmRhdGEkd2VpZ2h0Lmxvc3MgPSBkYXRhJGluaXRpYWwud2VpZ2h0IC0gZGF0YSRmaW5hbC53ZWlnaHQgDQpkYXRhDQoNCmBgYA0KDQojIyMgQW50ZXMgZGUgZXhlY3V0YXJtb3MgbyBNUlQsIHByZWNpc2Ftb3MgZXhlY3V0YXIgQU5PVkEuIElyZW1vcyBndWFyZGFyIG8gcmVzdWx0YWRvIGEgQU5PVkEgZW0gdW0gbm92byBkYXRhZnJhbWUNCg0KYGBge3J9DQphbm92YSAgPSBhb3Yod2VpZ2h0Lmxvc3N+ZGlldC50eXBlLGRhdGE9ZGF0YSkNCmFub3ZhDQpgYGANCg0KIyMjIEV4ZWN1w6fDo28gZG8gTVJUDQpgYGB7cn0NCmxpYnJhcnkoRGVzY1Rvb2xzKQ0KUG9zdEhvY1Rlc3QoYW5vdmEsIG1ldGhvZCA9ICJkdW5jYW4iKQ0KI2xpYnJhcnkoYWdyaWNvbGFlKQ0KI3Jlc3VsdHMgPC0gZHVuY2FuLnRlc3QoYW5vdmEsIkRpZXRhIixhbHBoYT0wLjA1LGNvbnNvbGU9VFJVRSkNCiNwbG90KHJlc3VsdHMsaG9yaXo9VFJVRSxsYXM9MSkNCmBgYA0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkR1bmNhbidzIG5ldyBtdWx0aXBsZSByYW5nZSB0ZXN0Ig0Kb3V0cHV0Og0KICBodG1sX2RvY3VtZW50Og0KICAgIGRmX3ByaW50OiBwYWdlZA0KLS0tDQoNCiMjIyBBIHByaW1laXJhIGNvaXNhIGEgc2VyIGZlaXRhIMOpIGNhcnJlZ2FyIG9zIGRhZG9zIGVtIHVtIERhdGFGcmFtZQ0KDQpgYGB7cn0NCmRhdGEgPSByZWFkLmNzdihmaWxlID0gImRhdGEuY3N2Iiwgcm93Lm5hbWVzID0gMSwgc3RyaW5nc0FzRmFjdG9ycyA9IFRSVUUpDQpkYXRhDQoNCmBgYA0KDQojIyMgQW50ZXMgZGUgZXhlY3V0YXJtb3MgbyBNUlQsIHByZWNpc2Ftb3MgZXhlY3V0YXIgQU5PVkEuIElyZW1vcyBndWFyZGFyIG8gcmVzdWx0YWRvIGEgQU5PVkEgZW0gdW0gbm92byBkYXRhZnJhbWUNCg0KYGBge3J9DQphbm92YSAgPSBhb3YoeWVsZH50cmVhdG1lbnQsZGF0YT1kYXRhKQ0KYW5vdmENCmBgYA0KDQojIyMgRXhlY3XDp8OjbyBkbyBNUlQNCmBgYHtyfQ0KI2xpYnJhcnkoRGVzY1Rvb2xzKQ0KI1Bvc3RIb2NUZXN0KGFub3ZhLCBtZXRob2QgPSAiZHVuY2FuIikNCmxpYnJhcnkoYWdyaWNvbGFlKQ0KZHVuY2FuLnRlc3QoYW5vdmEsIkRpZXRhIixhbHBoYT0wLjA1KQ0KI3Bsb3QocmVzdWx0cyxob3Jpej1UUlVFLGxhcz0xKQ0KYGBgDQoNCg==</div>
 
 
 
