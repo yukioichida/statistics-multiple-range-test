@@ -5,11 +5,11 @@ output:
     df_print: paged
 ---
 
-### A primeira coisa a ser feita é carregar os dados em um DataFrame
+### A primeira coisa a ser feita é carregar os dados em um DataFrame. Os dados abaixos representam 
 
 ```{r}
-data = read.csv(file = "data.csv", row.names = 1, stringsAsFactors = TRUE)
-data
+chocolate_df = read.csv("chocolate_data.csv")
+chocolate_df
 
 ```
 

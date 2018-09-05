@@ -1,26 +1,29 @@
 chocolate = data.frame(
   Sabor =
-    c(5, 7, 3,
-      4, 2, 6,
-      5, 3, 6,
-      5, 6, 0,
-      7, 4, 0,
-      7, 7, 0,
-      6, 6, 0,
-      4, 6, 1,
-      6, 4, 0,
-      7, 7, 0,
-      2, 4, 0,
+    c(7, 9, 5,
+      6, 5, 7,
+      7, 6, 7,
+      7, 8, 2,
+      9, 7, 3,
+      4, 9, 2,
+      6, 6, 4,
       5, 7, 4,
-      7, 5, 0,
-      4, 5, 0,
-      6, 6, 3
+      6, 5, 5,
+      7, 9, 2,
+      4, 5, 3,
+      5, 7, 4,
+      9, 6, 4,
+      7, 5, 4,
+      8, 6, 3
     ),
   Tipo = factor(rep(c("A", "B", "C"), 15)),
   Provador = factor(rep(1:15, rep(3, 15))))
+write.csv(chocolate, file="chocolate_data.csv",row.names=FALSE)
+
+chocolate_df = read.csv("chocolate_data.csv")
 
 
-ajuste = lm(data = chocolate, Sabor ~ .)
+ajuste = lm(data = chocolate_df, Sabor ~ .)
 summary(ajuste)
 anova(ajuste)
 library(agricolae)
