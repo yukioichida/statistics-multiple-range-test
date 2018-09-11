@@ -5,28 +5,25 @@ output:
     df_print: paged
 ---
 
-### A primeira coisa a ser feita é carregar os dados em um DataFrame. Os dados abaixos representam 
+### A primeira coisa a ser feita é carregar os dados em um DataFrame. Os dados abaixos representam notas de estudantes do ensino médio de 3 escolas diferentes (A, B e C) juntamente com a serie.
 
 ```{r}
-chocolate_df = read.csv("chocolate_data.csv")
-chocolate_df
+student_df = read.csv("student_data.csv")
+student_df
 
 ```
 
 ### Antes de executarmos o MRT, precisamos executar ANOVA. Iremos guardar o resultado a ANOVA em um novo dataframe
 
 ```{r}
-model<-lm(yeld~treatment, data)
-anova1  = anova(model)
-anova1
+ajuste = lm(data = student_df, Notas ~ Escola)
+summary(ajuste)
+anova(ajuste)
 ```
 
 ### Execução do MRT
 ```{r}
-#library(DescTools)
-#PostHocTest(anova1, method = "duncan")
 library(agricolae)
-duncan.test(anova1,"Dieta",alpha=0.05)
-#plot(results,horiz=TRUE,las=1)
+duncan.test(ajuste, "Escola", console = T)
 ```
 

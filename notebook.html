@@ -127,39 +127,77 @@ $(document).ready(function () {
 </div>
 
 
-<div id="a-primeira-coisa-a-ser-feita-e-carregar-os-dados-em-um-dataframe" class="section level3">
-<h3>A primeira coisa a ser feita é carregar os dados em um DataFrame</h3>
-<pre class="r"><code>data = read.csv(file = &quot;data.csv&quot;, row.names = 1, stringsAsFactors = TRUE)
-data</code></pre>
+<div id="a-primeira-coisa-a-ser-feita-e-carregar-os-dados-em-um-dataframe.-os-dados-abaixos-representam-notas-de-estudantes-do-ensino-medio-de-3-escolas-diferentes-a-b-e-c-juntamente-com-a-serie." class="section level3">
+<h3>A primeira coisa a ser feita é carregar os dados em um DataFrame. Os dados abaixos representam notas de estudantes do ensino médio de 3 escolas diferentes (A, B e C) juntamente com a serie.</h3>
+<pre class="r"><code>student_df = read.csv(&quot;student_data.csv&quot;)
+student_df</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["treatment"],"name":[1],"type":["int"],"align":["right"]},{"label":["yeld"],"name":[2],"type":["int"],"align":["right"]},{"label":["rank"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"2","2":"2678","3":"1","_rn_":"1"},{"1":"3","2":"2552","3":"2","_rn_":"2"},{"1":"4","2":"2128","3":"3","_rn_":"3"},{"1":"1","2":"2127","3":"4","_rn_":"4"},{"1":"5","2":"1796","3":"5","_rn_":"5"},{"1":"6","2":"1681","3":"6","_rn_":"6"},{"1":"7","2":"1316","3":"7","_rn_":"7"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["Notas"],"name":[1],"type":["int"],"align":["right"]},{"label":["Escola"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["Serie"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"7","2":"A","3":"1"},{"1":"9","2":"B","3":"1"},{"1":"5","2":"C","3":"1"},{"1":"6","2":"A","3":"2"},{"1":"5","2":"B","3":"2"},{"1":"7","2":"C","3":"2"},{"1":"7","2":"A","3":"3"},{"1":"6","2":"B","3":"3"},{"1":"7","2":"C","3":"3"},{"1":"7","2":"A","3":"4"},{"1":"8","2":"B","3":"4"},{"1":"2","2":"C","3":"4"},{"1":"9","2":"A","3":"5"},{"1":"7","2":"B","3":"5"},{"1":"3","2":"C","3":"5"},{"1":"4","2":"A","3":"6"},{"1":"9","2":"B","3":"6"},{"1":"2","2":"C","3":"6"},{"1":"6","2":"A","3":"7"},{"1":"6","2":"B","3":"7"},{"1":"4","2":"C","3":"7"},{"1":"5","2":"A","3":"8"},{"1":"7","2":"B","3":"8"},{"1":"4","2":"C","3":"8"},{"1":"6","2":"A","3":"9"},{"1":"5","2":"B","3":"9"},{"1":"5","2":"C","3":"9"},{"1":"7","2":"A","3":"10"},{"1":"9","2":"B","3":"10"},{"1":"2","2":"C","3":"10"},{"1":"4","2":"A","3":"11"},{"1":"5","2":"B","3":"11"},{"1":"3","2":"C","3":"11"},{"1":"5","2":"A","3":"12"},{"1":"7","2":"B","3":"12"},{"1":"4","2":"C","3":"12"},{"1":"9","2":"A","3":"13"},{"1":"6","2":"B","3":"13"},{"1":"4","2":"C","3":"13"},{"1":"7","2":"A","3":"14"},{"1":"5","2":"B","3":"14"},{"1":"4","2":"C","3":"14"},{"1":"8","2":"A","3":"15"},{"1":"6","2":"B","3":"15"},{"1":"3","2":"C","3":"15"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 <div id="antes-de-executarmos-o-mrt-precisamos-executar-anova.-iremos-guardar-o-resultado-a-anova-em-um-novo-dataframe" class="section level3">
 <h3>Antes de executarmos o MRT, precisamos executar ANOVA. Iremos guardar o resultado a ANOVA em um novo dataframe</h3>
-<pre class="r"><code>anova  = aov(yeld~treatment,data=data)
-anova</code></pre>
-<pre><code>## Call:
-##    aov(formula = yeld ~ treatment, data = data)
+<pre class="r"><code>ajuste = lm(data = student_df, Notas ~ Escola)
+summary(ajuste)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Notas ~ Escola, data = student_df)
 ## 
-## Terms:
-##                 treatment Residuals
-## Sum of Squares   959410.3  437683.1
-## Deg. of Freedom         1         5
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.46667 -0.93333  0.06667  0.53333  3.06667 
 ## 
-## Residual standard error: 295.8659
-## Estimated effects may be unbalanced</code></pre>
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   6.4667     0.3984  16.231  &lt; 2e-16 ***
+## EscolaB       0.2000     0.5634   0.355    0.724    
+## EscolaC      -2.5333     0.5634  -4.496 5.36e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.543 on 42 degrees of freedom
+## Multiple R-squared:  0.4105, Adjusted R-squared:  0.3825 
+## F-statistic: 14.63 on 2 and 42 DF,  p-value: 1.512e-05</code></pre>
+<pre class="r"><code>anova(ajuste)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sum Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mean Sq"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"69.64444","3":"34.822222","4":"14.62533","5":"1.512403e-05","_rn_":"Escola"},{"1":"42","2":"100.00000","3":"2.380952","4":"NA","5":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 <div id="execucao-do-mrt" class="section level3">
 <h3>Execução do MRT</h3>
-<pre class="r"><code>#library(DescTools)
-#PostHocTest(anova, method = &quot;duncan&quot;)
-library(agricolae)
-duncan.test(anova,&quot;Dieta&quot;,alpha=0.05)</code></pre>
-<pre><code>## NULL</code></pre>
-<pre class="r"><code>#plot(results,horiz=TRUE,las=1)</code></pre>
+<pre class="r"><code>library(agricolae)
+duncan.test(ajuste, &quot;Escola&quot;, console = T)</code></pre>
+<pre><code>## 
+## Study: ajuste ~ &quot;Escola&quot;
+## 
+## Duncan's new multiple range test
+## for Notas 
+## 
+## Mean Square Error:  2.380952 
+## 
+## Escola,  means
+## 
+##      Notas      std  r Min Max
+## A 6.466667 1.552264 15   4   9
+## B 6.666667 1.496026 15   5   9
+## C 3.933333 1.579632 15   2   7
+## 
+## Alpha: 0.05 ; DF Error: 42 
+## 
+## Critical Range
+##        2        3 
+## 1.137060 1.195655 
+## 
+## Means with the same letter are not significantly different.
+## 
+##      Notas groups
+## B 6.666667      a
+## A 6.466667      a
+## C 3.933333      b</code></pre>
 </div>
 
 
